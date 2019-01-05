@@ -1,9 +1,9 @@
 //
 //  Double.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
-//  Created by Vitor Silveira on 27/12/18.
-//  Copyright © 2018 Vitor Silveira. All rights reserved.
+//  Created by Vitor Silveira - VSV on 04/01/19.
+//  Copyright © 2019 Vitor Silveira. All rights reserved.
 //
 
 import Foundation

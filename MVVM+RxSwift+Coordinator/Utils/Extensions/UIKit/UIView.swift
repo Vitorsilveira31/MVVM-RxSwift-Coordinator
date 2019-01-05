@@ -1,6 +1,6 @@
 //
 //  UIView.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 22/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -10,18 +10,6 @@ import UIKit
 import SnapKit
 
 public extension UIView {
-    
-    static func fromNib<T>(withOwner: Any? = nil, options: [UINib.OptionsKey: Any]? = nil) -> T? where T: UIView {
-        let bundle = Bundle(for: self)
-        let nib = UINib(nibName: "\(self)", bundle: bundle)
-        return nib.instantiate(withOwner: withOwner, options: options).first as? T
-    }
-    
-    public func getViewElement<T>(type: T.Type) -> T? {
-        let subviewElement = subviews.compactMap { $0.subviews }
-        guard let element = (subviewElement.filter { $0 is T }).first as? T else { return nil }
-        return element
-    }
     
     public func addSubviewAttachingEdges(_ view: UIView,
                                          leadingConstraint: ConstraintItem? = nil,
@@ -78,13 +66,6 @@ public extension UIView {
         }
     }
     
-    public func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { rendererContext in
-            layer.render(in: rendererContext.cgContext)
-        }
-    }
-    
     public var circleCorner: Bool {
         get {
             return min(bounds.size.height, bounds.size.width) / 2 == cornerRadius
@@ -125,81 +106,6 @@ public extension UIView {
         }
         set {
             layer.borderWidth = newValue
-        }
-    }
-    
-    public var shadowColor: UIColor? {
-        get {
-            guard let color = layer.shadowColor else {
-                return nil
-            }
-            return UIColor(cgColor: color)
-        }
-        set {
-            layer.shadowColor = newValue?.cgColor
-        }
-    }
-    
-    public var shadowOffset: CGSize {
-        get {
-            return layer.shadowOffset
-        }
-        set {
-            layer.shadowOffset = newValue
-        }
-    }
-    
-    public var shadowOpacity: Double {
-        get {
-            return Double(layer.shadowOpacity)
-        }
-        set {
-            layer.shadowOpacity = Float(newValue)
-        }
-    }
-    
-    public var shadowRadius: CGFloat {
-        get {
-            return layer.shadowRadius
-        }
-        set {
-            layer.shadowRadius = newValue
-        }
-    }
-    
-    public var shadowPath: CGPath? {
-        get {
-            return layer.shadowPath
-        }
-        set {
-            layer.shadowPath = newValue
-        }
-    }
-    
-    public var shadowShouldRasterize: Bool {
-        get {
-            return layer.shouldRasterize
-        }
-        set {
-            layer.shouldRasterize = newValue
-        }
-    }
-    
-    public var shadowRasterizationScale: CGFloat {
-        get {
-            return layer.rasterizationScale
-        }
-        set {
-            layer.rasterizationScale = newValue
-        }
-    }
-    
-    public var maskToBounds: Bool {
-        get {
-            return layer.masksToBounds
-        }
-        set {
-            layer.masksToBounds = newValue
         }
     }
     

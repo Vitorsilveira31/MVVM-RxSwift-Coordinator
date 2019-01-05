@@ -12,7 +12,5 @@ target 'MVVM+RxSwift+Coordinator' do
   pod 'lottie-ios'
   pod 'Kingfisher', '~> 5.0'
   pod 'SnapKit', '~> 4.0.0'
-  pod 'DateToolsSwift'
-  pod 'SwiftyJSON', '~> 4.0.0'
 
 end

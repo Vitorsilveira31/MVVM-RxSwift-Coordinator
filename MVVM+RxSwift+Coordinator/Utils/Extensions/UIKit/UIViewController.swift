@@ -1,6 +1,6 @@
 //
 //  UIViewController.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 22/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -13,17 +13,6 @@ import RxSwift
 import RxCocoa
 
 public extension UIViewController {
-    
-    func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
     
     private var dimViewTag: Int { return 00002 }
     

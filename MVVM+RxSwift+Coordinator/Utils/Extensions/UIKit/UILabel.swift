@@ -1,6 +1,6 @@
 //
 //  UILabel.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 22/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -33,17 +33,6 @@ extension UILabel {
             self.font = UIFont.systemFont(ofSize: size)
         case .bold:
             self.font = UIFont.boldSystemFont(ofSize: size)
-        }
-    }
-
-    func setLineHeight(lineHeight: CGFloat) {
-        let text = self.text
-        if let text = text {
-            let paragraphStyle = NSMutableParagraphStyle()
-            
-            paragraphStyle.lineSpacing = lineHeight
-            let attributeString = NSAttributedString(string: text, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-            self.attributedText = attributeString
         }
     }
 }

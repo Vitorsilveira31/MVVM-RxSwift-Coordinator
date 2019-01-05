@@ -1,6 +1,6 @@
 //
 //  AppCoordinator.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 28/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -8,23 +8,30 @@
 
 import UIKit
 
-protocol Coordinator {
-    var navigationController: UINavigationController { get set }
+protocol Coordinator: class {
+    var window: UIWindow? { get set }
     func start()
 }
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: NSObject, Coordinator {
     
+    private let transitionCoordinator = TransitionCoordinator()
     private var oppenedCoin: Bool {
         return PreferencesService.shared.has(key: Keys.Coin)
     }
     private var coin: Coin? {
         return PreferencesService.shared.retrieve(key: Keys.Coin)
     }
-    internal var navigationController: UINavigationController
+    private var position: CGRect?
+    private let rootVC = CoinsViewController()
+    internal var window: UIWindow?
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(window: UIWindow?) {
+        super.init()
+        self.rootVC.coordinator = self
+        self.window = window
+        self.window?.rootViewController = self.rootVC
+        self.window?.makeKeyAndVisible()
     }
     
     deinit {
@@ -32,27 +39,37 @@ class AppCoordinator: Coordinator {
     }
     
     public func start() {
-        showCoins()
         if self.oppenedCoin, let coin = coin {
-            showDetails(coin: coin)
+            showDetails(coin: coin, position: CGRect(x: 0, y: 0, width: rootVC.view.width, height: 50.0))
         }
     }
     
-    public func showCoins() {
-        let vc = CoinsViewController()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
-    public func showDetails(coin: Coin) {
+    public func showDetails(coin: Coin, position: CGRect) {
         PreferencesService.shared.store(preferences: Keys.Coin, value: coin)
+        self.position = position
         let vc = CoinDetailsViewController(coin: coin)
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
+        vc.transitioningDelegate = self
+        rootVC.present(vc, animated: true)
     }
     
     public func clearCoin() {
-        PreferencesService.shared.clearUserDefaults()
+        self.rootVC.dismiss(animated: true) {
+            PreferencesService.shared.clearUserDefaults()
+        }
     }
     
+}
+
+extension AppCoordinator: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transitionCoordinator.originFrame = self.position ?? .zero
+        transitionCoordinator.presenting = true
+        return transitionCoordinator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transitionCoordinator.presenting = false
+        return transitionCoordinator
+    }
 }

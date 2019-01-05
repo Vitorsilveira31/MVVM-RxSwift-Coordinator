@@ -1,6 +1,6 @@
 //
 //  UIStackView.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 28/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -18,17 +18,5 @@ extension UIStackView {
         self.spacing = spacing
         self.alignment = alignment
         self.distribution = distribution
-    }
-    
-    func addArrangedSubviews(_ views: [UIView]) {
-        for view in views {
-            addArrangedSubview(view)
-        }
-    }
-    
-    func removeArrangedSubviews() {
-        for view in arrangedSubviews {
-            removeArrangedSubview(view)
-        }
     }
 }

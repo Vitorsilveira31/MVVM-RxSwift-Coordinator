@@ -1,6 +1,6 @@
 //
 //  CoinsViewController.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 20/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -80,7 +80,8 @@ class CoinsViewController: UIViewController {
         
         self.coinsTableView.rx.itemSelected.map { $0 }.bind {
             guard let coin = self.viewModel?.retrieveCoin($0) else { return }
-            self.coordinator?.showDetails(coin: coin)
+            let position = self.coinsTableView.convert(self.coinsTableView.rectForRow(at: $0), to: self.coinsTableView.superview)
+            self.coordinator?.showDetails(coin: coin, position: position)
             self.coinsTableView.deselectRow(at: $0, animated: true)
             }.disposed(by: disposeBag)
     }

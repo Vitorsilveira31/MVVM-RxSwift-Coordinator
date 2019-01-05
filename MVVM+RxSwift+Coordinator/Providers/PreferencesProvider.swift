@@ -1,6 +1,6 @@
 //
 //  PreferencesProvider.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 28/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.

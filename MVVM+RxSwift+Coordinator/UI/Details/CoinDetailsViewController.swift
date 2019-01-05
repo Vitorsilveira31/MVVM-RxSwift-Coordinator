@@ -1,6 +1,6 @@
 //
 //  CoinDetailsViewController.swift
-//  MVVM+Arch
+//  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira on 23/12/18.
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
@@ -29,6 +29,7 @@ class CoinDetailsViewController: UIViewController {
     private let valuesTableView = UITableView(registeredCell: CoinDetailTableViewCell.self,
                                               rowHeight: 72,
                                               allowsSelection: false)
+    private let dismissButton = UIButton(type: .system, font: .bold, withSize: 22.0, withTitle: "X", withTitleColor: nil)
     private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
@@ -49,13 +50,13 @@ class CoinDetailsViewController: UIViewController {
         setupBindings()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if self.isMovingFromParent {
-            self.coordinator?.clearCoin()
-        }
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        if self.isMovingFromParent {
+//            self.coordinator?.clearCoin()
+//        }
+//    }
 
     // MARK: - Public Methods
     
@@ -63,10 +64,18 @@ class CoinDetailsViewController: UIViewController {
     private func configureViews() {
         self.view.backgroundColor = .white
         
+        self.view.addSubview(self.dismissButton)
+        
+        self.dismissButton.snp.makeConstraints {
+            $0.top.equalTo(self.view.snp.topMargin)
+            $0.leading.equalTo(self.view.snp.leadingMargin)
+        }
+        
         let coinImageView = UIImageView(contentMode: .scaleAspectFit)
+        
         self.view.addSubview(coinImageView)
         coinImageView.snp.makeConstraints {
-            $0.top.equalTo(self.view.snp.topMargin).offset(20)
+            $0.top.equalTo(self.dismissButton.snp.bottomMargin).offset(20)
             $0.centerX.equalTo(self.view.snp.centerX)
             $0.width.equalTo(144)
             $0.height.equalTo(144)
@@ -142,6 +151,10 @@ class CoinDetailsViewController: UIViewController {
     }
     
     private func setupBindings() {
+        dismissButton.rx.tap.bind {
+            self.coordinator?.clearCoin()
+        }.disposed(by: disposeBag)
+        
         coinsDetailList?.bind(to: self.valuesTableView.rx.items(cellIdentifier: String(describing: CoinDetailTableViewCell.self), cellType: CoinDetailTableViewCell.self)) { row, element, cell in
             cell.coin = (element.key, element.value)
             }.disposed(by: disposeBag)
