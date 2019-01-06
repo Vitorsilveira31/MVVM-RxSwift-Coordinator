@@ -45,6 +45,7 @@ class PreferencesService: PreferencesProvider {
     }
     
     func retrieve<T>(key: Preferences<T>) -> T? {
+        userDefaults?.synchronize()
         if !isCodable(T.self) {
             return userDefaults?.value(forKey: key.key) as? T
         }
@@ -68,6 +69,7 @@ class PreferencesService: PreferencesProvider {
     
     func remove<T>(key: Preferences<T>) {
         UserDefaults.standard.removeObject(forKey: key.key)
+        UserDefaults.standard.synchronize()
     }
     
     func has<T>(key: Preferences<T>) -> Bool {
@@ -76,9 +78,8 @@ class PreferencesService: PreferencesProvider {
     }
     
     func clearUserDefaults() {
-        if let appDomain = Bundle.main.bundleIdentifier {
-            userDefaults?.removePersistentDomain(forName: appDomain)
-        }
+        UserDefaults.standard.removePersistentDomain(forName: "group.Shared")
+        UserDefaults.standard.synchronize()
     }
     
     private func isCodable<T>(_ type: T.Type) -> Bool {
