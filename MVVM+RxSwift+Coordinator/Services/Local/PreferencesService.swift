@@ -23,17 +23,20 @@ class PreferencesService: PreferencesProvider {
     
     public static let shared = PreferencesService()
     
+    private let userDefaults = UserDefaults(suiteName: "group.Shared")
     private init() {}
     
     func store<T>(preferences: Preferences<T>, value: T) {
         if !isCodable(T.self) {
-            UserDefaults.standard.set(value, forKey: preferences.key)
+            userDefaults?.set(value, forKey: preferences.key)
+            userDefaults?.synchronize()
             return
         }
         
         do {
             let encoded = try JSONEncoder().encode(value)
-            UserDefaults.standard.set(encoded, forKey: preferences.key)
+            userDefaults?.set(encoded, forKey: preferences.key)
+            userDefaults?.synchronize()
         } catch {
             #if DEBUG
             print(error)
@@ -43,10 +46,10 @@ class PreferencesService: PreferencesProvider {
     
     func retrieve<T>(key: Preferences<T>) -> T? {
         if !isCodable(T.self) {
-            return UserDefaults.standard.value(forKey: key.key) as? T
+            return userDefaults?.value(forKey: key.key) as? T
         }
         
-        guard let data = UserDefaults.standard.data(forKey: key.key) else {
+        guard let data = userDefaults?.data(forKey: key.key) else {
             return nil
         }
         
@@ -59,7 +62,7 @@ class PreferencesService: PreferencesProvider {
             #endif
         }
         
-        guard let value = UserDefaults.standard.object(forKey: key.key) as? T else { return nil }
+        guard let value = userDefaults?.object(forKey: key.key) as? T else { return nil }
         return value
     }
     
@@ -74,7 +77,7 @@ class PreferencesService: PreferencesProvider {
     
     func clearUserDefaults() {
         if let appDomain = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: appDomain)
+            userDefaults?.removePersistentDomain(forName: appDomain)
         }
     }
     

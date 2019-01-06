@@ -13,4 +13,9 @@ target 'MVVM+RxSwift+Coordinator' do
   pod 'Kingfisher', '~> 5.0'
   pod 'SnapKit', '~> 4.0.0'
 
+  target 'Widget' do
+      inherit! :search_paths
+      # Pods for testing
+  end
+  
 end

@@ -22,7 +22,7 @@ extension UILabel {
                      withTextAlignment textAlignment: NSTextAlignment = .natural,
                      withLines numberLines: Int = 1) {
         self.init()
-        self.textColor = .darkGrey
+        self.textColor = textColor
         self.numberOfLines = numberLines
         self.text = text
         self.textAlignment = textAlignment
