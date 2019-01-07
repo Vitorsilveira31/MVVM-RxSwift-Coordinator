@@ -22,6 +22,6 @@ class DownloaderImage: NSObject {
     
     public func commomInit() {
         self.imageView.kf.indicatorType = IndicatorType.activity
-        self.imageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"), options: [.processor(DownsamplingImageProcessor(size: CGSize(width: 1028, height: 768)))])
+        self.imageView.kf.setImage(with: url, placeholder: UIImage(named: K.Defaults.PlaceholderImage), options: [.processor(DownsamplingImageProcessor(size: CGSize(width: 1028, height: 768)))])
     }
 }

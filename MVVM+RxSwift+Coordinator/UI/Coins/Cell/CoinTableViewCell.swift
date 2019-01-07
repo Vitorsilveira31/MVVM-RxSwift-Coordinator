@@ -15,8 +15,8 @@ class CoinTableViewCell: UITableViewCell {
         didSet {
             guard let coin = coin else { return }
             self.nameCoinLabel.text = "\(coin.name) (\(coin.symbol))"
-            DownloaderImage(url: "https://res.cloudinary.com/dxi90ksom/image/upload/\(coin.symbol).png",
-                imageView: self.coinImageView).commomInit()
+            DownloaderImage(url: K.Defaults.CoinImage(symbol: coin.symbol),
+                            imageView: self.coinImageView).commomInit()
         }
     }
     

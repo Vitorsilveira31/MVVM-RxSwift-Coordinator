@@ -60,13 +60,13 @@ class CoinsViewController: UIViewController {
             case .empty:
                 debugPrint("empty")
                 self.dismissLoading()
-                self.showEmptyView(image: UIImage(named: "bitcoin"), title: "Sem Moedas", message: "O banco está vazio.", titleButton: "Buscar em outro banco", disposeBag: self.disposeBag) {
+                self.showEmptyView(image: UIImage(named: K.Defaults.BitcoinImage), title: "Sem Moedas", message: "O banco está vazio.", titleButton: "Buscar em outro banco", disposeBag: self.disposeBag) {
                     self.viewModel?.fetchData()
                 }
             case .error(let title, let message):
                 debugPrint("error")
                 self.dismissLoading()
-                self.showEmptyView(image: UIImage(named: "bitcoin"), title: title, message: message, disposeBag: self.disposeBag) {
+                self.showEmptyView(image: UIImage(named: K.Defaults.BitcoinImage), title: title, message: message, disposeBag: self.disposeBag) {
                     self.viewModel?.fetchData()
                 }
             }

@@ -15,7 +15,7 @@ class CoinDetailsViewController: UIViewController {
     
     // MARK: - Vars
     public weak var coordinator: AppCoordinator?
-
+    
     public var coin: Coin
     
     private var coinsDetailList: Observable<[String : Double]>? {
@@ -50,14 +50,6 @@ class CoinDetailsViewController: UIViewController {
         setupBindings()
     }
     
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//
-//        if self.isMovingFromParent {
-//            self.coordinator?.clearCoin()
-//        }
-//    }
-
     // MARK: - Public Methods
     
     // MARK: - Private Methods
@@ -80,7 +72,8 @@ class CoinDetailsViewController: UIViewController {
             $0.width.equalTo(144)
             $0.height.equalTo(144)
         }
-        DownloaderImage(url: "https://res.cloudinary.com/dxi90ksom/image/upload/\(coin.symbol).png", imageView: coinImageView).commomInit()
+        DownloaderImage(url: K.Defaults.CoinImage(symbol: coin.symbol),
+                        imageView: coinImageView).commomInit()
         
         let coinNameLabel = UILabel(withText: "\(coin.name) (\(coin.symbol))")
         self.view.addSubview(coinNameLabel)
@@ -92,7 +85,7 @@ class CoinDetailsViewController: UIViewController {
         let stack = UIStackView(axis: .horizontal, spacing: 8.0, alignment: .center, distribution: .fillEqually)
         
         let amountLabel = UILabel(withText: "Quantidade:")
-    
+        
         stack.addArrangedSubview(amountLabel)
         
         stack.addArrangedSubview(amountTextField)
@@ -132,13 +125,13 @@ class CoinDetailsViewController: UIViewController {
             case .empty:
                 debugPrint("empty")
                 self.dismissLoading()
-                self.showEmptyView(image: UIImage(named: "bitcoin"), title: "Sem Moedas", message: "O banco está vazio.", titleButton: "Buscar em outro banco", disposeBag: self.disposeBag) {
+                self.showEmptyView(image: UIImage(named: K.Defaults.BitcoinImage), title: "Sem Moedas", message: "O banco está vazio.", titleButton: "Buscar em outro banco", disposeBag: self.disposeBag) {
                     self.viewModel?.fetchData()
                 }
             case .error(let title, let message):
                 debugPrint("error")
                 self.dismissLoading()
-                self.showEmptyView(image: UIImage(named: "bitcoin"), title: title, message: message, disposeBag: self.disposeBag) {
+                self.showEmptyView(image: UIImage(named: K.Defaults.BitcoinImage), title: title, message: message, disposeBag: self.disposeBag) {
                     self.viewModel?.fetchData()
                 }
             }
@@ -153,7 +146,7 @@ class CoinDetailsViewController: UIViewController {
     private func setupBindings() {
         dismissButton.rx.tap.bind {
             self.coordinator?.clearCoin()
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
         
         coinsDetailList?.bind(to: self.valuesTableView.rx.items(cellIdentifier: String(describing: CoinDetailTableViewCell.self), cellType: CoinDetailTableViewCell.self)) { row, element, cell in
             cell.coin = (element.key, element.value)

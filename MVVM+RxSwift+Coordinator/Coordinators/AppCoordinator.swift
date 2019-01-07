@@ -15,7 +15,7 @@ protocol Coordinator: class {
 
 class AppCoordinator: NSObject, Coordinator {
     
-    private let transitionCoordinator = TransitionCoordinator()
+    private let transition = Transition()
     private var oppenedCoin: Bool {
         return PreferencesService.shared.has(key: Keys.Coin)
     }
@@ -63,13 +63,13 @@ class AppCoordinator: NSObject, Coordinator {
 
 extension AppCoordinator: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transitionCoordinator.originFrame = self.position ?? .zero
-        transitionCoordinator.presenting = true
-        return transitionCoordinator
+        transition.originFrame = self.position ?? .zero
+        transition.presenting = true
+        return transition
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transitionCoordinator.presenting = false
-        return transitionCoordinator
+        transition.presenting = false
+        return transition
     }
 }

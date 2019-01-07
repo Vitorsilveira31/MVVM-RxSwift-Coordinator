@@ -18,9 +18,9 @@ extension Coins: TargetType {
     public var baseURL: URL {
         switch self {
         case .coins:
-            return URL(string: "https://api.coinmarketcap.com")!
+            return URL(string: K.CoinAPIServer.baseURL)!
         case .compare:
-            return URL(string: "https://min-api.cryptocompare.com")!
+            return URL(string: K.CoinComparisonAPIServer.baseURL)!
         }
     }
     public var path: String {

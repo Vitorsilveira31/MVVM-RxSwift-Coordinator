@@ -1,5 +1,5 @@
 //
-//  TransitionCoordinator.swift
+//  Transition.swift
 //  MVVM+RxSwift+Coordinator
 //
 //  Created by Vitor Silveira - VSV on 05/01/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransitionCoordinator: NSObject, UIViewControllerAnimatedTransitioning {
+class Transition: NSObject, UIViewControllerAnimatedTransitioning {
     
     public var duration = 0.2
     public var presenting = true
@@ -62,9 +62,5 @@ class TransitionCoordinator: NSObject, UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(true)
         })
     }
-    
-    
-    
-    
     
 }

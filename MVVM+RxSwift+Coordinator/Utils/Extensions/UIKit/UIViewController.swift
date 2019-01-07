@@ -57,7 +57,7 @@ public extension UIViewController {
         view.center = window.center
         view.cornerRadius = 2
         
-        let loadingView = LOTAnimationView(name: "loader.json")
+        let loadingView = LOTAnimationView(name: K.Lottie.Loader)
         loadingView.play()
         loadingView.loopAnimation = true
         
