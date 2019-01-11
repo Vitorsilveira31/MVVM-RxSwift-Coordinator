@@ -6,10 +6,18 @@
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
 //
 
+// MARK: - Imports
 import Foundation
 import RxSwift
 import RxCocoa
 
+// MARK: - Typealias
+
+// MARK: - Protocols
+
+// MARK: - Constantes
+
+// MARK: - Enums
 public enum CoinsViewState {
     case loading
     case loaded
@@ -17,7 +25,9 @@ public enum CoinsViewState {
     case error(title: String, message: String)
 }
 
+// MARK: - Class/Objects
 class CoinsViewModel {
+    // MARK: - Propriedades (Getters & Setters)
     
     // MARK: - Vars
     public var coinList: Observable<[Coin]> {
@@ -41,6 +51,8 @@ class CoinsViewModel {
             self.viewState.accept(.empty)
         }
     }
+    
+    // MARK: - Overrides
     
     // MARK: - Public Methods
     public func fetchData() {
@@ -68,6 +80,8 @@ class CoinsViewModel {
     }
     
     // MARK: - Private Methods
+    
+    // MARK: - Deinitializers
     
 }
 

@@ -6,12 +6,25 @@
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
 //
 
+// MARK: - Imports
 import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
 
+// MARK: - Typealias
+
+// MARK: - Protocols
+
+// MARK: - Constantes
+
+// MARK: - Enums
+
+// MARK: - Class/Objects
 class CoinDetailsViewController: UIViewController {
+    // MARK: - Propriedades (Getters & Setters)
+    
+    // MARK: - Outlets
     
     // MARK: - Vars
     public weak var coordinator: AppCoordinator?
@@ -42,6 +55,7 @@ class CoinDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -157,6 +171,8 @@ class CoinDetailsViewController: UIViewController {
             .bind(to: amountTextField.rx.text)
             .disposed(by: disposeBag)
     }
+    
+    // MARK: - Deinitializers
     
 }
 

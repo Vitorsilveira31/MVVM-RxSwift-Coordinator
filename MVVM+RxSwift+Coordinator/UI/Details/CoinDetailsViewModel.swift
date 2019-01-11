@@ -6,10 +6,18 @@
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
 //
 
+// MARK: - Imports
 import Foundation
 import RxSwift
 import RxCocoa
 
+// MARK: - Typealias
+
+// MARK: - Protocols
+
+// MARK: - Constantes
+
+// MARK: - Enums
 public enum CoinDetailsViewState {
     case loading
     case loaded
@@ -17,7 +25,9 @@ public enum CoinDetailsViewState {
     case error(title: String, message: String)
 }
 
+// MARK: - Class/Objects
 class CoinDetailsViewModel {
+    // MARK: - Propriedades (Getters & Setters)
     
     // MARK: - Vars
     public var coin: Coin
@@ -39,6 +49,7 @@ class CoinDetailsViewModel {
     // MARK: - Lets
     private let disposeBag = DisposeBag()
     
+    // MARK: - Initializers
     init(coin: Coin, fieldDriver: SharedSequence<DriverSharingStrategy, String?>, stepperDriver: SharedSequence<DriverSharingStrategy, Double>) {
         self.viewState = BehaviorRelay<CoinDetailsViewState>(value: .loading)
         self.coin = coin
@@ -65,6 +76,8 @@ class CoinDetailsViewModel {
         self.fetchData()
     }
     
+    // MARK: - Overrides
+    
     // MARK: - Public Methods
     public func fetchData() {
         CoinAPIClient.shared.getComparison(from: coin.symbol, to: ["BRL", "USD", "EUR"], completion: { result in
@@ -85,6 +98,8 @@ class CoinDetailsViewModel {
     }
     
     // MARK: - Private Methods
+    
+    // MARK: - Deinitializers
 }
 
 // MARK: - Extensions

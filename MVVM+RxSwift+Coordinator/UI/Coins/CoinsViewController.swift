@@ -6,12 +6,25 @@
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
 //
 
+// MARK: - Imports
 import UIKit
 import RxSwift
 import RxCocoa
 import SnapKit
 
+// MARK: - Typealias
+
+// MARK: - Protocols
+
+// MARK: - Constantes
+
+// MARK: - Enums
+
+// MARK: - Class/Objects
 class CoinsViewController: UIViewController {
+    // MARK: - Propriedades (Getters & Setters)
+    
+    // MARK: - Outlets
     
     // MARK: - Vars
     public weak var coordinator: AppCoordinator?
@@ -27,6 +40,9 @@ class CoinsViewController: UIViewController {
                                              allowsSelection: true)
     private let disposeBag = DisposeBag()
     
+    // MARK: - Initializers
+
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,6 +102,8 @@ class CoinsViewController: UIViewController {
             }.disposed(by: disposeBag)
     }
     
+    // MARK: - Deinitializers
+
 }
 
 // MARK: - Extensions

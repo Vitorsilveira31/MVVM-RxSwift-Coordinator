@@ -6,11 +6,25 @@
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
 //
 
+// MARK: - Imports
 import UIKit
 import SnapKit
 
+// MARK: - Typealias
+
+// MARK: - Protocols
+
+// MARK: - Constantes
+
+// MARK: - Enums
+
+// MARK: - Class/Objects
 class CoinTableViewCell: UITableViewCell {
+    // MARK: - Propriedades (Getters & Setters)
     
+    // MARK: - Outlets
+    
+    // MARK: - Vars
     public var coin: Coin? = nil {
         didSet {
             guard let coin = coin else { return }
@@ -19,11 +33,14 @@ class CoinTableViewCell: UITableViewCell {
                             imageView: self.coinImageView).commomInit()
         }
     }
-    
     private var coinImageView = UIImageView(contentMode: .scaleAspectFill, clipsToBounds: true)
-    
     private var nameCoinLabel = UILabel(withColor: .darkGrey)
     
+    // MARK: - Lets
+    
+    // MARK: - Initializers
+    
+    // MARK: - Overrides
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -47,4 +64,13 @@ class CoinTableViewCell: UITableViewCell {
         
         self.coinImageView.circleCorner = true
     }
+    
+    // MARK: - Public Methods
+    
+    // MARK: - Private Methods
+    
+    // MARK: - Deinitializers
+    
 }
+
+// MARK: - Extensions

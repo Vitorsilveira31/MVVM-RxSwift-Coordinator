@@ -6,10 +6,24 @@
 //  Copyright © 2018 Vitor Silveira. All rights reserved.
 //
 
+// MARK: - Imports
 import UIKit
 
-class CoinDetailTableViewCell: UITableViewCell {
+// MARK: - Typealias
 
+// MARK: - Protocols
+
+// MARK: - Constantes
+
+// MARK: - Enums
+
+// MARK: - Class/Objects
+class CoinDetailTableViewCell: UITableViewCell {
+    // MARK: - Propriedades (Getters & Setters)
+    
+    // MARK: - Outlets
+    
+    // MARK: - Vars
     public var coin: (String, Double)? = nil {
         didSet {
             guard let coin = coin else { return }
@@ -17,11 +31,14 @@ class CoinDetailTableViewCell: UITableViewCell {
             valueCoinLabel.text = coin.1.formatUsingAbbrevation
         }
     }
-    
     private var nameCoinLabel = UILabel(withColor: .darkGrey)
-    
     private var valueCoinLabel = UILabel(withColor: .darkGrey)
+
+    // MARK: - Lets
     
+    // MARK: - Initializers
+
+    // MARK: - Overrides
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -39,4 +56,12 @@ class CoinDetailTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Public Methods
+    
+    // MARK: - Private Methods
+    
+    // MARK: - Deinitializers
+
 }
+
+// MARK: - Extensions
