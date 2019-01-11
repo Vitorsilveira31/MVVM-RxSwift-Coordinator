@@ -45,7 +45,7 @@ public extension UIViewController {
     
     private var loaderViewTag: Int { return 00003 }
     
-    public func showLoading(message: String = "carregando...") {
+    public func showLoading(message: String = "carregando...", color: UIColor = .blue) {
         guard let window = UIApplication.shared.keyWindow else { return }
         if !window.subviews.filter({ $0.tag == self.loaderViewTag }).isEmpty {
             return
@@ -57,9 +57,7 @@ public extension UIViewController {
         view.center = window.center
         view.cornerRadius = 2
         
-        let loadingView = LOTAnimationView(name: K.Lottie.Loader)
-        loadingView.play()
-        loadingView.loopAnimation = true
+        let loadingView = LoaderView(color: color)
         
         let msg = message.replacingOccurrences(of: ".", with: "")
         let messageLabel = UILabel(withSize: 12.0, withColor: .darkGrey, withText: msg, withTextAlignment: .center)
@@ -75,6 +73,8 @@ public extension UIViewController {
                 $0.centerY.equalTo(view.snp.centerY)
                 $0.height.equalTo(view.snp.height).multipliedBy(0.4)
             }
+            
+            loadingView.commomInit()
             
             view.addSubview(messageLabel)
             
@@ -152,7 +152,7 @@ public extension UIViewController {
             
             buttonRetry.borderColor = .gray
             buttonRetry.contentEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-
+            
             buttonRetry.borderWidth = 1
             buttonRetry.layer.cornerRadius = 2
             buttonRetry.rx.tap.bind {
