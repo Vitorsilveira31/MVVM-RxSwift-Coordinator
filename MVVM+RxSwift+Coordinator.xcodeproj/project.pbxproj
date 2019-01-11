@@ -28,8 +28,10 @@
 		0D6A5D8321E1918A00CFA541 /* DownloaderImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2364F21D6BD9D0089E6D1 /* DownloaderImage.swift */; };
 		0D6A5D8521E26D0600CFA541 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6A5D8421E26D0600CFA541 /* Constants.swift */; };
 		0D6A5D8621E26D5E00CFA541 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6A5D8421E26D0600CFA541 /* Constants.swift */; };
-		0D6A5D8821E2706600CFA541 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE1C3621E12BBC00C774A1 /* Transition.swift */; };
 		0D6A5DB221E90E6000CFA541 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6A5DB121E90E6000CFA541 /* Animations.swift */; };
+		0D6A5DB521E91E9D00CFA541 /* DynamicTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6A5DB421E91E9D00CFA541 /* DynamicTableView.swift */; };
+		0D6A5DB721E9279C00CFA541 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6A5DB621E9279C00CFA541 /* DefaultTextField.swift */; };
+		0D6A5DBA21E9365A00CFA541 /* CoinsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6A5DB921E9365A00CFA541 /* CoinsSearchViewController.swift */; };
 		0DE2363721D6BCD50089E6D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2363621D6BCD50089E6D1 /* AppDelegate.swift */; };
 		0DE2363E21D6BCD60089E6D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0DE2363D21D6BCD60089E6D1 /* Assets.xcassets */; };
 		0DE2364121D6BCD60089E6D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0DE2363F21D6BCD60089E6D1 /* LaunchScreen.storyboard */; };
@@ -101,6 +103,9 @@
 		0D6A5D8221E1900C00CFA541 /* MVVM+RxSwift+Coordinator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MVVM+RxSwift+Coordinator.entitlements"; sourceTree = "<group>"; };
 		0D6A5D8421E26D0600CFA541 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0D6A5DB121E90E6000CFA541 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		0D6A5DB421E91E9D00CFA541 /* DynamicTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTableView.swift; sourceTree = "<group>"; };
+		0D6A5DB621E9279C00CFA541 /* DefaultTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
+		0D6A5DB921E9365A00CFA541 /* CoinsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsSearchViewController.swift; sourceTree = "<group>"; };
 		0DE2363321D6BCD50089E6D1 /* MVVM+RxSwift+Coordinator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM+RxSwift+Coordinator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DE2363621D6BCD50089E6D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0DE2363D21D6BCD60089E6D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -202,6 +207,23 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		0D6A5DB321E91E8D00CFA541 /* UICustom */ = {
+			isa = PBXGroup;
+			children = (
+				0D6A5DB421E91E9D00CFA541 /* DynamicTableView.swift */,
+				0D6A5DB621E9279C00CFA541 /* DefaultTextField.swift */,
+			);
+			path = UICustom;
+			sourceTree = "<group>";
+		};
+		0D6A5DB821E9364500CFA541 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0D6A5DB921E9365A00CFA541 /* CoinsSearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		0DE2362A21D6BCD50089E6D1 = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +284,7 @@
 		0DE2364E21D6BD9D0089E6D1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0D6A5DB321E91E8D00CFA541 /* UICustom */,
 				0D6A5D8721E2705B00CFA541 /* Helpers */,
 				0D6A5D8421E26D0600CFA541 /* Constants.swift */,
 				0DE2365221D6BD9D0089E6D1 /* Extensions */,
@@ -299,6 +322,7 @@
 		0DE2366C21D6BD9D0089E6D1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0D6A5DB821E9364500CFA541 /* Search */,
 				0DE2366D21D6BD9D0089E6D1 /* Details */,
 				0DE2367221D6BD9D0089E6D1 /* Coins */,
 			);
@@ -641,7 +665,6 @@
 				0D6A5D6D21E1812D00CFA541 /* UIStepper.swift in Sources */,
 				0D6A5D7621E1855C00CFA541 /* PreferencesProvider.swift in Sources */,
 				0D6A5D8321E1918A00CFA541 /* DownloaderImage.swift in Sources */,
-				0D6A5D8821E2706600CFA541 /* Transition.swift in Sources */,
 				0D6A5D5E21E180CD00CFA541 /* CoinViewController.swift in Sources */,
 				0D6A5D8621E26D5E00CFA541 /* Constants.swift in Sources */,
 			);
@@ -654,10 +677,12 @@
 				0DE2369021D6BD9E0089E6D1 /* UIView.swift in Sources */,
 				0DE2368621D6BD9E0089E6D1 /* Coin.swift in Sources */,
 				0DE2369121D6BD9E0089E6D1 /* UIStepper.swift in Sources */,
+				0D6A5DB721E9279C00CFA541 /* DefaultTextField.swift in Sources */,
 				0DE236AA21D6BD9E0089E6D1 /* CoinAPIRouter.swift in Sources */,
 				0DE236A721D6BD9E0089E6D1 /* CoinTableViewCell.swift in Sources */,
 				0D6A5D8521E26D0600CFA541 /* Constants.swift in Sources */,
 				0DEE1C3721E12BBC00C774A1 /* Transition.swift in Sources */,
+				0D6A5DB521E91E9D00CFA541 /* DynamicTableView.swift in Sources */,
 				0DE2369321D6BD9E0089E6D1 /* UIColor.swift in Sources */,
 				0DE2368721D6BD9E0089E6D1 /* CoinProvider.swift in Sources */,
 				0DE2368921D6BD9E0089E6D1 /* DownloaderImage.swift in Sources */,
@@ -672,6 +697,7 @@
 				0DE2368821D6BD9E0089E6D1 /* PreferencesProvider.swift in Sources */,
 				0DE2369921D6BD9E0089E6D1 /* UIViewController.swift in Sources */,
 				0D6A5DB221E90E6000CFA541 /* Animations.swift in Sources */,
+				0D6A5DBA21E9365A00CFA541 /* CoinsSearchViewController.swift in Sources */,
 				0DE2368521D6BD9E0089E6D1 /* ServiceResult.swift in Sources */,
 				0DE236A821D6BD9E0089E6D1 /* PreferencesService.swift in Sources */,
 				0DE236A921D6BD9E0089E6D1 /* BaseAPIClient.swift in Sources */,

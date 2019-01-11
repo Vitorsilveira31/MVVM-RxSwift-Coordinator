@@ -47,9 +47,7 @@ class CoinsViewModel {
     init() {
         self.viewState = BehaviorRelay<CoinsViewState>(value: .loading)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.viewState.accept(.empty)
-        }
+        fetchData()
     }
     
     // MARK: - Overrides

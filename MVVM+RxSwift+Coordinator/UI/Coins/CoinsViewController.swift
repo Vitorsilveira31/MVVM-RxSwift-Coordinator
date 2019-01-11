@@ -28,20 +28,23 @@ class CoinsViewController: UIViewController {
     
     // MARK: - Vars
     public weak var coordinator: AppCoordinator?
-
+    
     private var coins: Observable<[Coin]>? {
         get { return self.viewModel?.coinList }
     }
     private var viewModel: CoinsViewModel?
     
     // MARK: - Lets
-    private let coinsTableView = UITableView(registeredCell: CoinTableViewCell.self,
-                                             rowHeight: 88.0,
-                                             allowsSelection: true)
+    public let searchTextField = DefaultTextField(placeholder: "Procurar..")
+    private let coinsScrollView = UIScrollView()
+    private let coinsView = UIView()
+    private let coinsTableView = DynamicTableView(registeredCell: CoinTableViewCell.self,
+                                                  rowHeight: 88.0,
+                                                  allowsSelection: true)
     private let disposeBag = DisposeBag()
     
     // MARK: - Initializers
-
+    
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +59,36 @@ class CoinsViewController: UIViewController {
     // MARK: - Private Methods
     private func configureViews() {
         self.view.backgroundColor = .white
-        
-        self.view.addSubviewAttachingEdges(self.coinsTableView,
+        self.view.addSubviewAttachingEdges(self.coinsScrollView,
                                            topConstraint: self.view.snp.topMargin,
                                            bottomConstraint: self.view.snp.bottomMargin)
+        self.coinsScrollView.addSubview(self.coinsView)
+        self.coinsView.snp.makeConstraints {
+            $0.leading.equalTo(self.coinsScrollView.snp.leading)
+            $0.top.equalTo(self.coinsScrollView.snp.top)
+            $0.trailing.equalTo(self.coinsScrollView.snp.trailing)
+            $0.bottom.equalTo(self.coinsScrollView.snp.bottom)
+            $0.height.equalTo(self.coinsScrollView.snp.height).priority(.low)
+            $0.width.equalTo(self.coinsScrollView.snp.width)
+        }
+        
+        self.view.addSubview(self.searchTextField)
+        self.searchTextField.snp.makeConstraints {
+            $0.leading.equalTo(self.view.snp.leadingMargin)
+            $0.top.equalTo(self.view.snp.topMargin).offset(40)
+            $0.trailing.equalTo(self.view.snp.trailingMargin)
+            $0.height.equalTo(35)
+        }
+        
+        self.coinsTableView.isScrollEnabled = false
+        let stackView = UIStackView(arrangedSubviews: [self.coinsTableView])
+        self.coinsView.addSubview(stackView)
+        stackView.snp.makeConstraints {
+            $0.leading.equalTo(self.coinsView.snp.leading)
+            $0.top.equalTo(self.coinsView.snp.top).offset(88)
+            $0.trailing.equalTo(self.coinsView.snp.trailing)
+            $0.bottom.equalTo(self.coinsView.snp.bottom)
+        }
     }
     
     private func bindViewModel() {
@@ -94,16 +123,16 @@ class CoinsViewController: UIViewController {
             cell.coin = element
             }.disposed(by: disposeBag)
         
-        self.coinsTableView.rx.itemSelected.map { $0 }.bind {
-            guard let coin = self.viewModel?.retrieveCoin($0) else { return }
-            let position = self.coinsTableView.convert(self.coinsTableView.rectForRow(at: $0), to: self.coinsTableView.superview)
+        self.coinsTableView.rx.itemSelected.map { $0 }.bind { indexPath in
+            guard let coin = self.viewModel?.retrieveCoin(indexPath) else { return }
+            let position = self.coinsTableView.convert(self.coinsTableView.rectForRow(at: indexPath), to: self.view)
             self.coordinator?.showDetails(coin: coin, position: position)
-            self.coinsTableView.deselectRow(at: $0, animated: true)
+            self.coinsTableView.deselectRow(at: indexPath, animated: true)
             }.disposed(by: disposeBag)
     }
     
     // MARK: - Deinitializers
-
+    
 }
 
 // MARK: - Extensions

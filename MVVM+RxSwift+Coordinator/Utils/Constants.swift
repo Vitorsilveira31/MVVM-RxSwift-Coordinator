@@ -23,10 +23,6 @@ struct K {
         static func CoinImage(symbol: String) -> String {
             return "https://res.cloudinary.com/dxi90ksom/image/upload/\(symbol).png"
         }
-        
-    }
-    
-    struct Lottie {
-        static let Loader = "loader.json"
+        static let MagnifyingGlassImage = "ic_glass"
     }
 }
