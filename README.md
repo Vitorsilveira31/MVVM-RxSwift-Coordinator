@@ -10,7 +10,7 @@ MVVM-RxSwift-Coordinators é um projeto onde é exibido CriptoMoedas e ao clicar
 - [x] Reatividade.
 - [x] Cordenador de fluxo.
 - [x] Abstração da camada de Network.
-- [x] Animação com JSON.
+- [x] Animação com CABasicAnimation.
 - [x] Salvar moeda com codable no UserDefaults.
 - [x] Apresentação de tela com animação. 
 - [x] Widget mostrando dados da ultima moeda exibida. 
