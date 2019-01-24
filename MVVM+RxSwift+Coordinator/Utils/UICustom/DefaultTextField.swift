@@ -16,6 +16,7 @@ class DefaultTextField: UITextField {
     
     private let textLeftPadding: CGFloat = 10
     private let textRightPadding: CGFloat = 10
+    private var style: DefaultTextFieldStyle = .rounded
     
     init(placeholder: String = "", backgroundColor: UIColor = .white,
          style: DefaultTextFieldStyle = .rounded) {
@@ -23,12 +24,22 @@ class DefaultTextField: UITextField {
         
         self.placeholder = placeholder
         self.backgroundColor = backgroundColor
-        
-        self.setStyle(style)
+        self.style = style
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        switch style {
+        case .rounded:
+            self.layer.cornerRadius = bounds.height / 2
+            self.layer.borderWidth = 0.5
+            self.borderColor = UIColor.gray
+        }
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -40,15 +51,6 @@ class DefaultTextField: UITextField {
     
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return textRect(forBounds: bounds)
-    }
-    
-    private func setStyle(_ style: DefaultTextFieldStyle) {
-        switch style {
-        case .rounded:
-            self.layer.cornerRadius = 17
-            self.layer.borderWidth = 0.5
-            self.borderColor = UIColor.gray
-        }
     }
     
 }

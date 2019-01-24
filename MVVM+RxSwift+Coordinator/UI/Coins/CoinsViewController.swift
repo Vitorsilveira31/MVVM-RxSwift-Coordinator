@@ -36,7 +36,7 @@ class CoinsViewController: UIViewController {
     
     // MARK: - Lets
     public let searchTextField = DefaultTextField(placeholder: "Procurar..")
-    private let coinsScrollView = UIScrollView()
+    public let coinsScrollView = UIScrollView()
     private let coinsView = UIView()
     private let coinsTableView = DynamicTableView(registeredCell: CoinTableViewCell.self,
                                                   rowHeight: 88.0,
@@ -74,9 +74,9 @@ class CoinsViewController: UIViewController {
         
         self.view.addSubview(self.searchTextField)
         self.searchTextField.snp.makeConstraints {
-            $0.leading.equalTo(self.view.snp.leadingMargin)
+            $0.leading.equalTo(self.view.snp.leadingMargin).offset(10)
             $0.top.equalTo(self.view.snp.topMargin).offset(40)
-            $0.trailing.equalTo(self.view.snp.trailingMargin)
+            $0.trailing.equalTo(self.view.snp.trailingMargin).inset(10)
             $0.height.equalTo(35)
         }
         
@@ -129,6 +129,13 @@ class CoinsViewController: UIViewController {
             self.coordinator?.showDetails(coin: coin, position: position)
             self.coinsTableView.deselectRow(at: indexPath, animated: true)
             }.disposed(by: disposeBag)
+        
+        self.searchTextField.rx.controlEvent(.editingDidBegin).bind {
+            self.searchTextField.endEditing(true)
+            let vc = CoinsSearchViewController()
+            vc.transitioningDelegate = self
+            self.present(vc, animated: true)
+        }.disposed(by: disposeBag)
     }
     
     // MARK: - Deinitializers
@@ -136,3 +143,14 @@ class CoinsViewController: UIViewController {
 }
 
 // MARK: - Extensions
+extension CoinsViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let transition = ToSearch()
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let transition = FromSearch()
+        return transition
+    }
+}

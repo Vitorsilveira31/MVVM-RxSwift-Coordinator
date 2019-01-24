@@ -30,7 +30,8 @@ class CoinsSearchViewController: UIViewController {
     public weak var coordinator: AppCoordinator?
     
     // MARK: - Lets
-    public let searchTextField = UITextField(borderStyle: .none, textAlignment: .natural)
+    public let searchTextField = DefaultTextField(placeholder: "Procurar..")
+    public let dismissButton = UIButton(type: .system, font: .bold, withSize: 22.0, withTitle: "X", withTitleColor: nil)
     private let coinsTableView = DynamicTableView(registeredCell: CoinTableViewCell.self,
                                                   rowHeight: 88.0,
                                                   allowsSelection: true)
@@ -53,11 +54,17 @@ class CoinsSearchViewController: UIViewController {
     private func configureViews() {
         self.view.backgroundColor = .white
         
+        self.view.addSubview(self.dismissButton)
         self.view.addSubview(self.searchTextField)
+        
+        self.dismissButton.snp.makeConstraints {
+            $0.trailing.equalTo(self.view.snp.trailingMargin)
+            $0.centerY.equalTo(self.searchTextField.snp.centerY)
+            $0.leading.equalTo(self.searchTextField.snp.trailing).offset(18)
+        }
         self.searchTextField.snp.makeConstraints {
             $0.leading.equalTo(self.view.snp.leadingMargin)
             $0.top.equalTo(self.view.snp.topMargin)
-            $0.trailing.equalTo(self.view.snp.trailingMargin)
             $0.height.equalTo(30)
         }
     }
@@ -67,7 +74,9 @@ class CoinsSearchViewController: UIViewController {
     }
     
     private func setupBindings() {
-        
+        dismissButton.rx.tap.bind {
+            self.dismiss(animated: true)
+            }.disposed(by: disposeBag)
     }
     
     // MARK: - Deinitializers

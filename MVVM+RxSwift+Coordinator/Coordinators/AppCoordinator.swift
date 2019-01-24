@@ -15,7 +15,7 @@ protocol Coordinator: class {
 
 class AppCoordinator: NSObject, Coordinator {
     
-    private let transition = Transition()
+    private let transition = Scale()
     private var oppenedCoin: Bool {
         return PreferencesService.shared.has(key: Keys.Coin)
     }

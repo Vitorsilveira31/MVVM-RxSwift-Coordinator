@@ -17,7 +17,7 @@ class CoinAPIClient: BaseAPIClient, CoinProvider {
     }
     
     func getComparison(from symbol: String, to symbols: [String], completion: @escaping (ServiceResult<[String : Double]>) -> Void) {
-        requestWithJsonResponse(Coins.compare(fromSymbol: symbol, toSymbols: symbols), completion: completion)
+        requestWithoutCodableResponse(Coins.compare(fromSymbol: symbol, toSymbols: symbols), completion: completion)
     }
     
 }

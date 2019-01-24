@@ -57,7 +57,6 @@ class CoinsViewModel {
         self.viewState.accept(.loading)
         self.coins.removeAll()
         CoinAPIClient.shared.fetchCoins { result in
-            
             guard result.isSuccess, let item = result.item else {
                 self.viewState.accept(.error(title: result.error.title, message: result.error.message))
                 return

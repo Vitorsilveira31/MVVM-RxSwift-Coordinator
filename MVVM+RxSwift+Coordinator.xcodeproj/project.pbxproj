@@ -64,7 +64,7 @@
 		0DE236AC21D6BD9E0089E6D1 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2368021D6BD9E0089E6D1 /* AppCoordinator.swift */; };
 		0DE236AD21D6BD9E0089E6D1 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE2368221D6BD9E0089E6D1 /* RequestError.swift */; };
 		0DEE1C3421E042A000C774A1 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE1C3321E042A000C774A1 /* Double.swift */; };
-		0DEE1C3721E12BBC00C774A1 /* Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE1C3621E12BBC00C774A1 /* Transition.swift */; };
+		0DEE1C3721E12BBC00C774A1 /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DEE1C3621E12BBC00C774A1 /* Transitions.swift */; };
 		64D7514F3819D2DF8EE655B4 /* Pods_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1E875A63F4C3FF9C40FC9E0 /* Pods_Widget.framework */; };
 		EAF5A24B4ACCAFB0CDF9F6D1 /* Pods_MVVM_RxSwift_Coordinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A568DEE45075A5E06D74C4 /* Pods_MVVM_RxSwift_Coordinator.framework */; };
 /* End PBXBuildFile section */
@@ -140,7 +140,7 @@
 		0DE2368021D6BD9E0089E6D1 /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0DE2368221D6BD9E0089E6D1 /* RequestError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		0DEE1C3321E042A000C774A1 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
-		0DEE1C3621E12BBC00C774A1 /* Transition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transition.swift; sourceTree = "<group>"; };
+		0DEE1C3621E12BBC00C774A1 /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
 		1D5B3752BFE7D3D6BBE4C213 /* Pods-Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Widget/Pods-Widget.debug.xcconfig"; sourceTree = "<group>"; };
 		62A568DEE45075A5E06D74C4 /* Pods_MVVM_RxSwift_Coordinator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MVVM_RxSwift_Coordinator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C08C349A6B043643AA1C39E /* Pods-Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Widget/Pods-Widget.release.xcconfig"; sourceTree = "<group>"; };
@@ -200,7 +200,7 @@
 		0D6A5D8721E2705B00CFA541 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0DEE1C3621E12BBC00C774A1 /* Transition.swift */,
+				0DEE1C3621E12BBC00C774A1 /* Transitions.swift */,
 				0DE2364F21D6BD9D0089E6D1 /* DownloaderImage.swift */,
 				0D6A5DB121E90E6000CFA541 /* Animations.swift */,
 			);
@@ -681,7 +681,7 @@
 				0DE236AA21D6BD9E0089E6D1 /* CoinAPIRouter.swift in Sources */,
 				0DE236A721D6BD9E0089E6D1 /* CoinTableViewCell.swift in Sources */,
 				0D6A5D8521E26D0600CFA541 /* Constants.swift in Sources */,
-				0DEE1C3721E12BBC00C774A1 /* Transition.swift in Sources */,
+				0DEE1C3721E12BBC00C774A1 /* Transitions.swift in Sources */,
 				0D6A5DB521E91E9D00CFA541 /* DynamicTableView.swift in Sources */,
 				0DE2369321D6BD9E0089E6D1 /* UIColor.swift in Sources */,
 				0DE2368721D6BD9E0089E6D1 /* CoinProvider.swift in Sources */,

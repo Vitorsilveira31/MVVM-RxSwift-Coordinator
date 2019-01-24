@@ -31,7 +31,7 @@ class BaseAPIClient {
             }).disposed(by: disposeBag)
     }
     
-    public func requestWithJsonResponse<P: TargetType, T>(_ targetType: P, completion: @escaping (ServiceResult<T>) -> Void) {
+    public func requestWithoutCodableResponse<P: TargetType, T>(_ targetType: P, completion: @escaping (ServiceResult<T>) -> Void) {
         let provider = MoyaProvider<P>()
         provider.rx.request(targetType)
             .filterSuccessfulStatusCodes()
